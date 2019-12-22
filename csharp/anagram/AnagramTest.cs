@@ -47,7 +47,7 @@ public class AnagramTest
         Assert.Equal(expected, sut.FindAnagrams(candidates));
     }
 
-    [Fact(Skip = "Remove to run test")]
+    [Fact]
     public void Detects_multiple_anagrams_with_different_case()
     {
         var candidates = new[] { "Eons", "ONES" };
@@ -73,7 +73,7 @@ public class AnagramTest
         Assert.Equal(expected, sut.FindAnagrams(candidates));
     }
 
-    [Fact(Skip = "Remove to run test")]
+    [Fact]
     public void Detects_anagrams_using_case_insensitive_subject()
     {
         var candidates = new[] { "cashregister", "carthorse", "radishes" };
@@ -82,7 +82,7 @@ public class AnagramTest
         Assert.Equal(expected, sut.FindAnagrams(candidates));
     }
 
-    [Fact(Skip = "Remove to run test")]
+    [Fact]
     public void Detects_anagrams_using_case_insensitive_possible_matches()
     {
         var candidates = new[] { "cashregister", "Carthorse", "radishes" };
@@ -115,7 +115,7 @@ public class AnagramTest
         Assert.Empty(sut.FindAnagrams(candidates));
     }
 
-    [Fact(Skip = "Remove to run test")]
+    [Fact]
     public void Words_other_than_themselves_can_be_anagrams()
     {
         var candidates = new[] { "Listen", "Silent", "LISTEN" };

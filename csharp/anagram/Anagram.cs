@@ -12,34 +12,14 @@ public class Anagram
 
     public string[] FindAnagrams(string[] potentialMatches)
     {      
-        return FindUsingForLoop(potentialMatches);
+        return potentialMatches.Where(x => ValidateAnagram(x)).ToArray();
     }
 
-    private string[] FindUsingForLoop(string[] potentialMatches)
+    private bool ValidateAnagram(string wordToCompare)
     {
-        List<string> matches = new List<string>();
+        var word = String.Concat(wordToCompare.Select(x => char.ToLower(x)).OrderBy(x => x));
+        var baseWord = String.Concat(this._baseWord.Select(x => char.ToLower(x)).OrderBy(x => x));
 
-        foreach (var match in potentialMatches)
-        {
-            if (match.Length == _baseWord.Length && !match.Contains(_baseWord))
-            {
-                var tempBaseWord = _baseWord;
-
-                for (var i = 0; i < match.Length; i++)
-                {
-                    if (tempBaseWord.Contains(match[i]))
-                    {
-                        tempBaseWord = tempBaseWord.Remove(tempBaseWord.IndexOf(match[i]), 1);
-                    }
-                }
-
-                if (tempBaseWord.Length == 0)
-                {
-                    matches.Add(match);
-                }
-            }
-        }
-
-        return matches.ToArray();
+        return word == baseWord && wordToCompare.ToLower() != this._baseWord.ToLower();
     }
 }
