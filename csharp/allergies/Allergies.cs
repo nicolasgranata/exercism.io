@@ -15,14 +15,14 @@ public enum Allergen
 
 public class Allergies
 {
-    private readonly int _mask;
+    private readonly Allergen _mask;
     public Allergies(int mask)
     {
-        _mask = mask;
+        _mask = (Allergen)mask;
     }
 
-    public bool IsAllergicTo(Allergen allergen) => ((int)allergen & _mask) > 0;
+    public bool IsAllergicTo(Allergen allergen) => _mask.HasFlag(allergen);
 
     public Allergen[] List() => Enum.GetValues(typeof(Allergen))
-                   .Cast<Allergen>().Where(x => ((int)x & _mask) > 0).ToArray();
+                   .Cast<Allergen>().Where(x => IsAllergicTo(x)).ToArray();
 }
